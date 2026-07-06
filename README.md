@@ -9,15 +9,47 @@ Este projeto entrega um fluxo pequeno, executavel e apresentavel para o case:
 
 - leitura dos cinco Parquets mensais de Yellow Taxi;
 - validacao e publicacao de uma camada Silver em Delta Lake;
-- materializacao de duas agregacoes Gold pedidas n  o desafio;
+- materializacao de duas agregacoes Gold pedidas no desafio;
 - execucao local com Spark + Delta;
 - execucao no Databricks com notebooks finos;
 - testes unitarios e de integracao para as regras principais.
 
+**Aviso**:
+o projeto pode ser executado tanto localmente quanto no Databricks. A opcao
+mais recomendada e o Databricks, porque nela voce reaproveita os componentes e
+classes implementados neste repositorio e ainda conta com uma visao mais
+completa de analise, com queries, views e notebooks de apoio ja disponiveis na
+pasta `analysis/`.
+
+Se optar pela execucao no Databricks, lembre-se de copiar os arquivos
+`.parquet` para dentro do volume configurado antes de rodar o pipeline.
+
 ## Arquitetura
 
-O projeto foi organizado para sugerir uma estrutura de plataforma sem exagerar
-na abstracao para o tamanho do case.
+O projeto atual foi mantido propositalmente enxuto para o tamanho do case, mas
+ja foi organizado de forma a sugerir uma evolucao natural para uma plataforma
+de dados mais completa.
+
+![Evolucao simples da arquitetura da plataforma](assets/imgs/Evolucao%20Simples%20Arquitetura%20Plataforma.png)
+
+O desenho acima deve ser lido como uma orientacao sistemica de evolucao da
+arquitetura, e nao como algo 100% entregue neste repositorio neste momento.
+Ele representa uma melhoria de projeto: um caminho simples e pragmatica para
+expandir a solucao atual para uma plataforma de dados mais robusta.
+
+Pensando nessa evolucao, a plataforma passaria a oferecer:
+
+- conectores para multiplas origens, como arquivos, APIs, bancos e eventos;
+- uma zona de ingestao para carga batch e, futuramente, streaming;
+- camadas organizadas em arquitetura Medallion, com Landing, Silver e Gold;
+- transformacoes e validacoes reutilizaveis ao longo do pipeline;
+- schematizacao e padronizacao de contratos de dados;
+- tecnologias modernas para processamento e armazenamento, como Spark e Delta Lake.
+- Repositórios auxiliares para tratar a plataforma orientado a .yaml, auxiliando na ingestão e transformações de dados de forma facíl para os usuarios da plataforma.
+
+Neste projeto, a entrega implementada hoje cobre uma versao reduzida dessa
+visao, concentrada no fluxo local com conector de arquivos, transformacoes
+Silver e Gold, persistencia Delta e orquestracao simples.
 
 - `core.connector`: leitura da origem
 - `core.transform`: regras de transformacao Silver e Gold
