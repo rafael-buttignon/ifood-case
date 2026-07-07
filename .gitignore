@@ -12,3 +12,5 @@ source/
 .databrickscfg
 .env
 .vscode
+.codex
+.agents

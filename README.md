@@ -108,8 +108,7 @@ Silver e Gold, persistencia Delta e orquestracao simples.
 │       └── test_sync.py                  # persistencia Delta
 ├── .gitignore
 ├── Makefile                              # comandos padronizados de desenvolvimento
-├── pyproject.toml                        # empacotamento e configuracao de ferramentas
-├── requirements.txt                      # dependencias instaladas no setup local
+├── pyproject.toml                        # empacotamento, dependencias e configuracao de ferramentas
 └── README.md
 ```
 
